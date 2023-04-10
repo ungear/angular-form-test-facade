@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {PizzaSize} from "./pizzaSizes";
+import {PizzaOrderConfig} from "./pizzaOrderConfig";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-form-test-facade';
+  orderFormConfig: PizzaOrderConfig = [
+    { name: 'Margarita', availableSizes: [PizzaSize.Small, PizzaSize.Medium] },
+    { name: 'Pesto', availableSizes: [PizzaSize.Medium] },
+    { name: 'Pepperoni', availableSizes: [PizzaSize.Large] }
+  ]
 }

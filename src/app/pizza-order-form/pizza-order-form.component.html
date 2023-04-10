@@ -1,1 +1,20 @@
-<p>pizza-order-form works!</p>
+<form [formGroup]="orderForm" (submit)="onOrderFormSubmit()">
+  <p>
+    <input type="radio" formControlName="size" value="{{pizzaSizes.Small}}" id="{{pizzaSizes.Small}}">
+    <label for="{{pizzaSizes.Small}}">{{pizzaSizes.Small}}</label>
+    <input type="radio" formControlName="size" value="{{pizzaSizes.Medium}}" id="{{pizzaSizes.Medium}}">
+    <label for="{{pizzaSizes.Medium}}">{{pizzaSizes.Medium}}</label>
+    <input type="radio" formControlName="size" value="{{pizzaSizes.Large}}" id="{{pizzaSizes.Large}}">
+    <label for="{{pizzaSizes.Large}}">{{pizzaSizes.Large}}</label>
+  </p>
+
+  <p>
+    <select formControlName="pizza">
+      <option *ngFor="let p of availablePizzas" value="p">{{p}}</option>
+    </select>
+  </p>
+
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+</form>
