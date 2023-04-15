@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PizzaSize} from "./pizzaSizes";
+import {PizzaSize} from "./enums/pizzaSizes";
 import {PizzaOrderConfig} from "./typing/pizzaOrderConfig";
 import { PizzaOrder } from './typing/pizzaOrder';
 

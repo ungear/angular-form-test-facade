@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PizzaOrderConfig} from "../typing/pizzaOrderConfig";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {PizzaSize} from "../pizzaSizes";
-import {map} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {PizzaSize} from "../enums/pizzaSizes";
 import { PizzaOrder } from '../typing/pizzaOrder';
+import {DeliveryTypes} from "../enums/deliveryTypes";
 
 @Component({
   selector: 'app-pizza-order-form',
@@ -21,9 +21,14 @@ export class PizzaOrderFormComponent implements OnInit {
     pizza: new FormControl('', {
       validators: [ Validators.required,]
     }),
+    delivery: new FormControl<DeliveryTypes>(DeliveryTypes.FromPizzeria, {
+      nonNullable: true,
+      validators: [ Validators.required,]
+    }),
   });
 
   pizzaSizes = PizzaSize;
+  deliveryTypes = DeliveryTypes;
   availablePizzas: string[] = []
 
 
@@ -47,6 +52,7 @@ export class PizzaOrderFormComponent implements OnInit {
     const order: PizzaOrder = {
       size: this.orderForm.get('size')!.value,
       pizza: this.orderForm.get('pizza')!.value as string,
+      delivery: this.orderForm.get('delivery')!.value,
     };
     this.submitA.next(order);
   }

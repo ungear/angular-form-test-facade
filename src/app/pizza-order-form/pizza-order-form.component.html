@@ -15,6 +15,14 @@
     </select>
   </p>
 
+
+  <p>
+    <input type="radio" formControlName="delivery" value="{{deliveryTypes.FromPizzeria}}" id="{{deliveryTypes.FromPizzeria}}">
+    <label for="{{deliveryTypes.FromPizzeria}}">{{deliveryTypes.FromPizzeria}}</label>
+    <input type="radio" formControlName="delivery" value="{{deliveryTypes.HomeDelivery}}" id="{{deliveryTypes.HomeDelivery}}">
+    <label for="{{deliveryTypes.HomeDelivery}}">{{deliveryTypes.HomeDelivery}}</label>
+  </p>
+
   <p>
     <button type="submit">Submit</button>
   </p>
