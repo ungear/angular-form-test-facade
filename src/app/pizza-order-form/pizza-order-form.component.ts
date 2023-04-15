@@ -50,6 +50,11 @@ export class PizzaOrderFormComponent implements OnInit {
 
   onOrderFormSubmit(){
     if(!this.orderForm.valid) return;
+
+    // in a real app we would use a custom validator for delivery address
+    // but in this example let's just use a straightforward check for simplicity
+    if(this.isDeliveryFromPizzeria && this.orderForm.get('deliveryAddress')?.value?.length === 0) return;
+
     const order: PizzaOrder = {
       size: this.orderForm.get('size')!.value,
       pizza: this.orderForm.get('pizza')!.value as string,
@@ -60,5 +65,9 @@ export class PizzaOrderFormComponent implements OnInit {
     };
 
     this.submitA.next(order);
+  }
+
+  get isDeliveryFromPizzeria(): boolean{
+    return this.orderForm.get('delivery')?.value === this.deliveryTypes.HomeDelivery
   }
 }

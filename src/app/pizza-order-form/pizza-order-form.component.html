@@ -25,7 +25,7 @@
 
   <p>
     <input
-      *ngIf="this.orderForm.get('delivery')?.value === deliveryTypes.HomeDelivery"
+      *ngIf="isDeliveryFromPizzeria"
       type="text"
       formControlName="deliveryAddress"
       placeholder="Delivery Address"/>
