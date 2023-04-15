@@ -5,4 +5,5 @@ export interface PizzaOrder {
   size: PizzaSize,
   pizza: string,
   delivery: DeliveryTypes,
+  deliveryAddress?: string,
 }

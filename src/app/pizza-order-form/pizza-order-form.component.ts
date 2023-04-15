@@ -25,6 +25,7 @@ export class PizzaOrderFormComponent implements OnInit {
       nonNullable: true,
       validators: [ Validators.required,]
     }),
+    deliveryAddress: new FormControl(''),
   });
 
   pizzaSizes = PizzaSize;
@@ -53,7 +54,11 @@ export class PizzaOrderFormComponent implements OnInit {
       size: this.orderForm.get('size')!.value,
       pizza: this.orderForm.get('pizza')!.value as string,
       delivery: this.orderForm.get('delivery')!.value,
+      deliveryAddress: this.orderForm.get('delivery')!.value === this.deliveryTypes.HomeDelivery
+        ? this.orderForm.get('deliveryAddress')!.value as string
+        : undefined
     };
+
     this.submitA.next(order);
   }
 }

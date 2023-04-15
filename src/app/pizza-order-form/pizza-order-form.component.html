@@ -24,6 +24,14 @@
   </p>
 
   <p>
+    <input
+      *ngIf="this.orderForm.get('delivery')?.value === deliveryTypes.HomeDelivery"
+      type="text"
+      formControlName="deliveryAddress"
+      placeholder="Delivery Address"/>
+  </p>
+
+  <p>
     <button type="submit">Submit</button>
   </p>
 </form>
