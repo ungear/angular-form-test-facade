@@ -10,7 +10,8 @@
 
   <p>
     <select formControlName="pizza">
-      <option *ngFor="let p of availablePizzas" value="p">{{p}}</option>
+      <option value="">--- select pizza ---</option>
+      <option *ngFor="let p of availablePizzas" value="{{p}}">{{p}}</option>
     </select>
   </p>
 

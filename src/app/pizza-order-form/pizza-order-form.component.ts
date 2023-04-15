@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PizzaOrderConfig} from "../pizzaOrderConfig";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PizzaOrderConfig} from "../typing/pizzaOrderConfig";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {PizzaSize} from "../pizzaSizes";
 import {map} from "rxjs";
+import { PizzaOrder } from '../typing/pizzaOrder';
 
 @Component({
   selector: 'app-pizza-order-form',
@@ -11,10 +12,15 @@ import {map} from "rxjs";
 })
 export class PizzaOrderFormComponent implements OnInit {
   @Input() config!: PizzaOrderConfig;
-
+  @Output() submitA = new EventEmitter<PizzaOrder>();
   orderForm = new FormGroup({
-    size: new FormControl<PizzaSize>(PizzaSize.Small, { nonNullable: true }),
-    pizza: new FormControl(''),
+    size: new FormControl<PizzaSize>(PizzaSize.Small, {
+      nonNullable: true,
+      validators: [ Validators.required,]
+     }),
+    pizza: new FormControl('', {
+      validators: [ Validators.required,]
+    }),
   });
 
   pizzaSizes = PizzaSize;
@@ -25,6 +31,7 @@ export class PizzaOrderFormComponent implements OnInit {
     this.setAvailablePizzas();
     this.orderForm.controls.size.valueChanges.subscribe(_ => {
       this.setAvailablePizzas();
+      this.orderForm.controls.pizza.reset('');
     })
   }
 
@@ -35,5 +42,12 @@ export class PizzaOrderFormComponent implements OnInit {
       .map(x => x.name)
   }
 
-  onOrderFormSubmit(){}
+  onOrderFormSubmit(){
+    if(!this.orderForm.valid) return;
+    const order: PizzaOrder = {
+      size: this.orderForm.get('size')!.value,
+      pizza: this.orderForm.get('pizza')!.value as string,
+    };
+    this.submitA.next(order);
+  }
 }

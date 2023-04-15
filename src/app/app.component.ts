@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {PizzaSize} from "./pizzaSizes";
-import {PizzaOrderConfig} from "./pizzaOrderConfig";
+import {PizzaOrderConfig} from "./typing/pizzaOrderConfig";
+import { PizzaOrder } from './typing/pizzaOrder';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,8 @@ export class AppComponent {
     { name: 'Pesto', availableSizes: [PizzaSize.Medium] },
     { name: 'Pepperoni', availableSizes: [PizzaSize.Large] }
   ]
+
+  onPizzaOrderSubmit(order: PizzaOrder){
+    console.log(order)
+  }
 }
