@@ -14,6 +14,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Local development in Docker
+Power Shell command
+```
+docker run -dp 3000:4200 `
+     -w /app --mount type=bind,src="$(pwd)",target=/app `
+     node:18-alpine `
+     sh -c "yarn install && yarn run start-docker"
+``` 
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
